@@ -1,6 +1,6 @@
 import './App.less'
 import { Button } from 'antd'
-import { BrowserRouter as Router, Route, Link, useHistory } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import UseState from './React-Hooks/use-state'
 import UseEffect from './React-Hooks/use-effect'
 import UseRef from './React-Hooks/use-ref'
@@ -11,10 +11,9 @@ import { Typography } from 'antd'
 const { Title } = Typography
 
 function App() {
-  const history = useHistory()
   return (
     <div className="App">
-      <Title style={{textAlign: 'center'}} level={2}>React Hooks
+      <Title style={{ textAlign: 'center' }} level={2}>React Hooks
         Study</Title>
       <Router>
         <Button type={'primary'} size={'large'}><Link to="/">Use State</Link></Button>

@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { useHistory } from 'react-router-dom'
 import { Typography, Button } from 'antd'
 
 const { Title } = Typography
@@ -17,24 +16,28 @@ function UseState() {
   })
   return (
     <>
+      <Title>useState</Title>
       <Title levle={2}>{count}</Title>
-      <Button onClick={() => setCount(count + 3)}>HandleCountChange</Button>
+      <Button type={'dashed'} onClick={() => setCount(count + 3)}>HandleCountChange</Button>
       <br/>
       <Title levle={2}>{obj.name}</Title>
       <Title levle={2}>{obj.age}</Title>
-      <Button onClick={() => setObj({ ...obj, ...{ name: 'Dendi2', age: 77 } })}>HandleObjChange</Button>
-      <Button onClick={() => setObj(Object.assign({}, obj, { name: 'Dendi2' }))}>HandleObjChange</Button>
+      <Button type={'dashed'} onClick={() => setObj({ ...obj, ...{ name: 'Dendi2', age: 77 } })}>HandleObjChange</Button>
+      <Button type={'dashed'} onClick={() => setObj(Object.assign({}, obj, { name: 'Dendi2' }))}>HandleObjChange</Button>
       <br/>
       <ul>
         {
           arr.map(val => <li>{val}</li>)
         }
       </ul>
-      <Button onClick={() => setArr([...arr, ...['a', 'b', 'c']])}>HandleChangeArray</Button>
+      <Button type={'dashed'} onClick={() => setArr(() => {
+        arr.push('Dendi')
+        return [...arr]
+      })}>HandleChangeArray</Button>
       <br/>
       <Title levle={2}>{func}</Title>
-      // setFunc
-      <Button onClick={() => setFunc(func + 10)}>HandleFuncChange</Button>
+      {/*setFunc 设置*/}
+      <Button type={'dashed'} onClick={() => setFunc(func + 10)}>HandleFuncChange</Button>
     </>
 
   )
