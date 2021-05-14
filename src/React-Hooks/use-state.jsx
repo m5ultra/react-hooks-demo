@@ -27,7 +27,7 @@ function UseState() {
       <br/>
       <ul>
         {
-          arr.map(val => <li>{val}</li>)
+          arr.map(val => <li key={val}>{val}</li>)
         }
       </ul>
       <Button type={'dashed'} onClick={() => setArr(() => {
