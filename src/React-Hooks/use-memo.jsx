@@ -15,7 +15,7 @@ function UseMemo() {
   // useMemo 接收一个创建函数 第二个参数是一个依赖数组
   let res = useMemo(() => {
     return { count, num }
-
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [count])
   return (
     <>
