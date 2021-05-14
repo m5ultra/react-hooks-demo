@@ -10,6 +10,7 @@ import UseCallback from './React-Hooks/use-callback'
 import UseImperativeHandle from './React-Hooks/use-imperative-handle'
 import UseLayoutEffect from './React-Hooks/use-layout-effect'
 import UseCustomHooks from './React-Hooks/customHook'
+import UseReducer from './React-Hooks/use-reducer'
 import './React-Hooks/style.less'
 import { Typography } from 'antd'
 
@@ -30,6 +31,7 @@ function App() {
         <Button type={'primary'} size={'large'}><Link to="/use-imperative-handle">Use Imperative Handle</Link></Button>
         <Button type={'primary'} size={'large'}><Link to="/use-layout-effect">Use Layout Effect</Link></Button>
         <Button type={'primary'} size={'large'}><Link to="/use-custom-hook">Use Custom Hook(自定义Hook)</Link></Button>
+        <Button type={'primary'} size={'large'}><Link to="/use-reducer">Use Reducer</Link></Button>
         <div>
           <Route path="/" exact component={UseState}/>
           <Route path="/use-effect" component={UseEffect}/>
@@ -40,6 +42,7 @@ function App() {
           <Route path="/use-imperative-handle" component={UseImperativeHandle}/>
           <Route path="/use-layout-effect" component={UseLayoutEffect}/>
           <Route path="/use-custom-hook" component={UseCustomHooks}/>
+          <Route path="/use-reducer" component={UseReducer}/>
         </div>
       </Router>
     </div>
