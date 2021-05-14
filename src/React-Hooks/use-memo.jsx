@@ -1,6 +1,6 @@
-
 import { useMemo, useState } from 'react'
-import { Typography } from 'antd'
+import { Typography, Button } from 'antd'
+import ChildMemo from './useMemo/ChildMemo'
 
 const { Title } = Typography
 
@@ -11,13 +11,21 @@ const { Title } = Typography
  */
 function UseMemo() {
   const [count, setCount] = useState(0)
-  let [num, setNum] = useState(100)
+  const [num, setNum] = useState(1)
+  // useMemo 接收一个创建函数 第二个参数是一个依赖数组
   let res = useMemo(() => {
-    return {count, num}
-  }, [])
+    return { count, num }
+
+  }, [count])
   return (
     <>
       <Title>useMemo</Title>
+      <br/>
+      <Title level={3}>父组件状态count{res.count} ------ {res.num}</Title>
+      <Button type={'dashed'} onClick={() => setCount(count + 1)}>HandleCountChange</Button>
+      <Button type={'dashed'} onClick={() => setNum(num + 1)}>HandleNumChange</Button>
+      <br/>
+      <ChildMemo num={num} count={count}/>
     </>
   )
 }
