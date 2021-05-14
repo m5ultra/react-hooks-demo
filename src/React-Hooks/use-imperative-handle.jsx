@@ -1,7 +1,7 @@
 /**
  * useImperativeHandle(ref, createHandle, [deps])
  */
-import { useImperativeHandle, forwardRef, useRef } from 'react'
+import { useImperativeHandle, forwardRef, useRef, useState } from 'react'
 import { Typography, Button, Input } from 'antd'
 
 const { Title } = Typography
@@ -21,6 +21,8 @@ function UseImperativeHandle() {
 }
 
 const Child = forwardRef((props, ref) => {
+  const [count, setCount] = useState(0)
+  const [num, setNum] = useState(100)
   const inputRef = useRef(null)
   const spanEl = useRef(null)
   // 1.forwardRef
@@ -29,8 +31,11 @@ const Child = forwardRef((props, ref) => {
     focus: () => {
       inputRef.current.focus()
     },
-    spanEl
-  }), [])
+    spanEl,
+    count,
+    num
+    // 第三个参数 监控某个值变化的时候 才会把新的结果传给父组件
+  }), [num])
   return (
     <>
       {/*index.js:1 Warning: Function components cannot be given refs. Attempts to access this ref will fail. Did you mean to use React.forwardRef()?*/}
@@ -38,6 +43,12 @@ const Child = forwardRef((props, ref) => {
       <Title level={3}><span ref={spanEl}>{123}</span></Title>
       <Title level={3}>abc</Title>
       <Input ref={inputRef}/>
+      <Button onClick={() => {
+        setNum(num + 5)
+      }}>Change Num</Button>
+      <Button onClick={() => {
+        setCount(count + 1)
+      }}>Change Count</Button>
     </>
   )
 })
