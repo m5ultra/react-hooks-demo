@@ -35,6 +35,7 @@ const Child = forwardRef((props, ref) => {
     count,
     num
     // 第三个参数 监控某个值变化的时候 才会把新的结果传给父组件
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }), [num])
   return (
     <>

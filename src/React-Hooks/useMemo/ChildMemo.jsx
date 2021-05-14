@@ -6,6 +6,7 @@ const { Title } = Typography
 function ChildMemo({num, count}) {
   const res = useMemo(() => {
     return {num, count}
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [num])
   return (
     <>

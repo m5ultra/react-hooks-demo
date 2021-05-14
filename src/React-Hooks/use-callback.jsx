@@ -9,6 +9,7 @@ function UseCallback() {
   const cb = useCallback(() => {
     console.log(count)
     return count
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [num])
   return (
     <>
