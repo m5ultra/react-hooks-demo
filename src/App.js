@@ -5,7 +5,7 @@ import UseState from './React-Hooks/use-state'
 import UseEffect from './React-Hooks/use-effect'
 import UseRef from './React-Hooks/use-ref'
 import UseContext from './React-Hooks/use-context'
-import UseMemo from './React-Hooks/use-meomo'
+import UseMemo from './React-Hooks/use-memo'
 import './React-Hooks/style.less'
 import { Typography } from 'antd'
 
