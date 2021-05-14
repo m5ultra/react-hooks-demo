@@ -21,7 +21,7 @@ function App() {
         <Button type={'primary'} size={'large'}><Link to="/use-effect">Use Effect</Link></Button>
         <Button type={'primary'} size={'large'}><Link to="/use-ref">Use Ref</Link></Button>
         <Button type={'primary'} size={'large'}><Link to="/use-context">Use Context</Link></Button>
-        <Button type={'primary'} size={'large'}><Link to="/use-memo">Use Context</Link></Button>
+        <Button type={'primary'} size={'large'}><Link to="/use-memo">Use Memo</Link></Button>
         <div>
           <Route path="/" exact component={UseState}/>
           <Route path="/use-effect" component={UseEffect}/>
