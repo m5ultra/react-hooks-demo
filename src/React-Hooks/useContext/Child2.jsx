@@ -7,7 +7,7 @@ const { Title } = Typography
 function Child2() {
   const num = useContext(MyContext)
   return (
-    <Title levle={3}>{num}</Title>
+    <Title level={3}>{num}</Title>
   )
 }
 

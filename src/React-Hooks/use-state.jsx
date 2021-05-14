@@ -17,11 +17,11 @@ function UseState() {
   return (
     <>
       <Title>useState</Title>
-      <Title levle={2}>{count}</Title>
+      <Title level={2}>{count}</Title>
       <Button type={'dashed'} onClick={() => setCount(count + 3)}>HandleCountChange</Button>
       <br/>
-      <Title levle={2}>{obj.name}</Title>
-      <Title levle={2}>{obj.age}</Title>
+      <Title level={2}>{obj.name}</Title>
+      <Title level={2}>{obj.age}</Title>
       <Button type={'dashed'} onClick={() => setObj({ ...obj, ...{ name: 'Dendi2', age: 77 } })}>HandleObjChange</Button>
       <Button type={'dashed'} onClick={() => setObj(Object.assign({}, obj, { name: 'Dendi2' }))}>HandleObjChange</Button>
       <br/>
@@ -35,7 +35,7 @@ function UseState() {
         return [...arr]
       })}>HandleChangeArray</Button>
       <br/>
-      <Title levle={2}>{func}</Title>
+      <Title level={2}>{func}</Title>
       {/*setFunc 设置*/}
       <Button type={'dashed'} onClick={() => setFunc(func + 10)}>HandleFuncChange</Button>
     </>
