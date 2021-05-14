@@ -7,6 +7,7 @@ import UseRef from './React-Hooks/use-ref'
 import UseContext from './React-Hooks/use-context'
 import UseMemo from './React-Hooks/use-memo'
 import UseCallback from './React-Hooks/use-callback'
+import UseImperativeHandle from './React-Hooks/use-imperative-handle'
 import './React-Hooks/style.less'
 import { Typography } from 'antd'
 
@@ -24,6 +25,7 @@ function App() {
         <Button type={'primary'} size={'large'}><Link to="/use-context">Use Context</Link></Button>
         <Button type={'primary'} size={'large'}><Link to="/use-memo">Use Memo</Link></Button>
         <Button type={'primary'} size={'large'}><Link to="/use-callback">Use Callback</Link></Button>
+        <Button type={'primary'} size={'large'}><Link to="/use-imperative-handle">Use Imperative Handle</Link></Button>
         <div>
           <Route path="/" exact component={UseState}/>
           <Route path="/use-effect" component={UseEffect}/>
@@ -31,6 +33,7 @@ function App() {
           <Route path="/use-context" component={UseContext}/>
           <Route path="/use-memo" component={UseMemo}/>
           <Route path="/use-callback" component={UseCallback}/>
+          <Route path="/use-imperative-handle" component={UseImperativeHandle}/>
         </div>
       </Router>
     </div>
