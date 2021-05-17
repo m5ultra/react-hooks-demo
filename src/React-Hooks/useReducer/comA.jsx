@@ -6,7 +6,9 @@ import ComAChild from './comAChild'
 const { Title } = Typography
 
 const ComA = () => {
-  const { state, dispatch } = useContext(MyContext)
+  const [rootState, dispatch] = useContext(MyContext)
+  const {state} = rootState
+  console.log(state, 'state')
   return (
     <>
       <Title level={3}>ComA</Title>
