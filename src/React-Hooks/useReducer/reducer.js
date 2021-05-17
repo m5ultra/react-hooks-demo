@@ -15,7 +15,7 @@ const initialLocation = {
 
 const myReducer = (state, action) => {
   switch (action.type) {
-    case'setName': {
+    case 'setName': {
       return {
         ...state,
         name: action.name
@@ -43,7 +43,7 @@ const identityReducer = (state, action) => {
 const locationReducer = (state, action) => {
   switch (action.type) {
     case 'ACTION_B':
-      return { ...state, city: 'Manchester' };
+      return { ...state, city: action.city };
     default: return state;
   }
 }
@@ -58,7 +58,7 @@ const Reducer = (props) => {
   const [rootState, dispatch] = useReducer(profileReducer, initialProfile)
   console.log(rootState, 'rootState')
   return (
-    <MyContext.Provider value={[rootState, dispatch]  }>
+    <MyContext.Provider value={[rootState, dispatch]}>
       {props.children}
     </MyContext.Provider>
   )

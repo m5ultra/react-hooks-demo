@@ -7,16 +7,25 @@ const { Title } = Typography
 
 const ComA = () => {
   const [rootState, dispatch] = useContext(MyContext)
-  const {state} = rootState
-  console.log(state, 'state')
+  const { state, location } = rootState
+  console.log(state, location, 'state')
   return (
     <>
       <Title level={3}>ComA</Title>
-      <hr/>
-      <Title level={3}>ComA:name是{state.name}, age是{state.age}</Title>
-      <Button onClick={() => dispatch({ type: 'setName', name: 'Dendi2' })}>Set Name</Button>
-      <Button onClick={() => dispatch({ type: 'setAge', age: 18 })}>Set Age</Button>
-      <ComAChild/>
+      <hr />
+      <Title level={3}>
+        ComA:name是{state.name}, age是{state.age}
+      </Title>
+      <Title level={3}>
+        ComA:location是{location.country}, city是{location.city}
+      </Title>
+      <Button onClick={() => dispatch({ type: 'setName', name: 'Dendi2' })}>
+        Set Name
+      </Button>
+      <Button onClick={() => dispatch({ type: 'setAge', age: 18 })}>
+        Set Age
+      </Button>
+      <ComAChild />
     </>
   )
 }
