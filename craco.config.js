@@ -1,3 +1,4 @@
+// https://github.com/gsoft-inc/craco/blob/master/packages/craco/README.md#configuration-file
 const CracoLessPlugin = require('craco-less')
 // 引入步骤2安装的依赖们
 //const postcssImport = require('postcss-import')
