@@ -6,6 +6,7 @@ import Reducer from './reducer'
 // 第三方库 https://www.npmjs.com/package/react-combine-reducers
 // 不支持插件
 // 没有调试工具 类似redux-dev-tools
+
 const CusRedux = () => {
   return (
     <>
@@ -18,3 +19,4 @@ const CusRedux = () => {
 }
 
 export default CusRedux
+
