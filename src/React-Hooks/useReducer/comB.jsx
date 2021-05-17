@@ -5,7 +5,8 @@ import { MyContext } from './reducer'
 const { Title } = Typography
 
 const ComB = () => {
-  const { state, dispatch } = useContext(MyContext)
+  const [rootState, dispatch] = useContext(MyContext)
+  const {state} = rootState
   return (
     <>
       <Title level={3}>ComB</Title>
