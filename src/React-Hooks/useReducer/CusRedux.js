@@ -6,7 +6,7 @@ import Reducer from './reducer'
 // 第三方库 https://www.npmjs.com/package/react-combine-reducers
 // 不支持插件
 // 没有调试工具 类似redux-dev-tools
-
+// https://segmentfault.com/a/1190000038221692 craco.config.js配置
 const CusRedux = () => {
   return (
     <>
