@@ -5,7 +5,8 @@ import { Typography, Button } from 'antd'
 const { Title } = Typography
 
 const ComAChild = () => {
-  const { state, dispatch } = useContext(MyContext)
+  const [rootState, dispatch] = useContext(MyContext)
+  const {state} = rootState
   return (
     <>
       <Title level={5}>ComAChild</Title>
