@@ -2,6 +2,8 @@
 // carco 配置 https://blog.csdn.net/guozhicaice/article/details/109593964
 // https://stackoverflow.com/questions/47846209/webpack-with-less-and-postcss-autoprefixer webpack with less and postcss autoprefixer
 // craco https://cloud.tencent.com/developer/article/1749704
+
+// 移动端适配方案 https://bubble93.github.io/2021/03/11/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D%E6%96%B9%E6%A1%88/
 const CracoLessPlugin = require('craco-less')
 // 引入步骤2安装的依赖们
 // const postcssImport = require('postcss-import')
@@ -12,48 +14,55 @@ const CracoLessPlugin = require('craco-less')
 // const pxToViewPort = require('postcss-px-to-viewport')
 // const cssnano = require('cssnano')
 const path = require('path')
-const SimpleProgressWebpackPlugin = require('simple-progress-webpack-plugin')
 const pathResolve = pathUrl => path.join(__dirname, pathUrl)
+const px2rem = require('postcss-px2rem-exclude')
+// 通过其他合适的方式判断是否为本地调试环境也一样，自由选择。
+// const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+//   .ant-btn {
+//   margin-right: 10px;
+//   margin-bottom: 30px;
+// }
+
+//   .ant-btn {
+//   margin-right: 3.125vw;
+//   margin-bottom: 9.375vw;
+// }
 module.exports = {
-  //   {
-  //   autoprefixer: {},
-  //   "postcss-px-to-viewport": {
-  //     unitToConvert: 'px',
-  //     viewportWidth: 750,
-  //     unitPrecision: 8,
-  //     propList: ["*"],
-  //     viewportUnit: 'vw',
-  //     fontViewportUnit: 'vw',
-  //     selectorBlackList: ['.ignore', '.hairlines'],
-  //     minPixelValue: 1,
-  //     mediaQuery: true,
-  //     replace: true,
-  //     exclude: [/node_modules/],
-  //     landscape: false,
-  //   }
-  // },
-  // require('postcss-px-to-viewport')(
-  //   postcssImport({}),
-  //   postcssUrl({}),
-  //   postcssAspectRatioMini({}),
-  //   postcssWriteSvg({ utf8: false }),
-  //   postcsscssnext({}),
-  //   pxToViewPort({
-  //     viewportWidth: 750, // (Number) The width of the viewport.
-  //     viewportHeight: 1334, // (Number) The height of the viewport.
-  //     unitPrecision: 8, // (Number) The decimal numbers to allow the REM units to grow to.
-  //     viewportUnit: 'rem', // (String) Expected units.
-  //     selectorBlackList: ['.ignore', '.hairlines'], // (Array) The selectors to ignore and leave as px.
-  //     minPixelValue: 1, // (Number) Set the minimum pixel value to replace.
-  //     mediaQuery: false, // (Boolean) Allow px to be converted in media queries.
-  //   }),
-  //   cssnano({
-  //     preset: 'advanced',
-  //     autoprefixer: false,
-  //     'postcss-zindex': false,
-  //     zindex: false
-  //   }),
-  // ),
+  style: {
+    postcss: {
+      loaderOptions: {
+        ident: 'postcss',
+        // plugins: () => [
+        //   require('postcss-px-to-viewport')(
+        //     postcssImport({}),
+        //     postcssUrl({}),
+        //     postcssAspectRatioMini({}),
+        //     postcssWriteSvg({ utf8: false }),
+        //     postcsscssnext({}),
+        //     pxToViewPort({
+        //       viewportWidth: 750, // (Number) The width of the viewport.
+        //       viewportHeight: 1334, // (Number) The height of the viewport.
+        //       unitPrecision: 10, // (Number) The decimal numbers to allow the REM units to grow to.
+        //       viewportUnit: 'rem', // (String) Expected units.
+        //       selectorBlackList: ['.ignore', '.hairlines'], // (Array) The selectors to ignore and leave as px.
+        //       minPixelValue: 1, // (Number) Set the minimum pixel value to replace.
+        //       mediaQuery: false, // (Boolean) Allow px to be converted in media queries.
+        //       exclude: /(\/|\\)(node_modules)(\/|\\)/ig
+        //     }),
+        //     cssnano({
+        //       preset: 'advanced',
+        //       autoprefixer: false,
+        //       'postcss-zindex': false,
+        //       zindex: false
+        //     }),
+        //   ),
+        // ],
+        plugins: () => [
+          px2rem({ remUtil: 75, exclude: /node_modules/i })
+        ]
+      },
+    }
+  },
   webpack: {
     alias: {
       '@@': pathResolve('.'),
@@ -66,11 +75,8 @@ module.exports = {
       '@store': pathResolve('src/store'),
       '@utils': pathResolve('src/utils'),
     },
-    plugins: [
-      // 查看打包的进度
-      new SimpleProgressWebpackPlugin()
-    ],
-    configure: (webpackConfig, {env, paths }) => {
+    // 修改webpack配置
+    configure: (webpackConfig, { env, paths }) => {
       // paths.appPath='public'
       paths.appBuild = 'dist'
       webpackConfig.output = {
