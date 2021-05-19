@@ -2,7 +2,8 @@
 // carco 配置 https://blog.csdn.net/guozhicaice/article/details/109593964
 // https://stackoverflow.com/questions/47846209/webpack-with-less-and-postcss-autoprefixer webpack with less and postcss autoprefixer
 // craco https://cloud.tencent.com/developer/article/1749704
-// 移动端适配方案 https://bubble93.github.io/2021/03/11/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D%E6%96%B9%E6%A1%88/
+// 移动端适配方案 1.https://bubble93.github.io/2021/03/11/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D%E6%96%B9%E6%A1%88/
+// 移动端适配方案 2.https://www.cnblogs.com/zhangnan35/p/12682925.html
 const CracoLessPlugin = require('craco-less')
 const postcssAspectRatioMini = require('postcss-aspect-ratio-mini')
 const postcssWriteSvg = require('postcss-write-svg')
