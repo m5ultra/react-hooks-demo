@@ -6,16 +6,16 @@
 // 移动端适配方案 https://bubble93.github.io/2021/03/11/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D%E6%96%B9%E6%A1%88/
 const CracoLessPlugin = require('craco-less')
 // 引入步骤2安装的依赖们
-// const postcssImport = require('postcss-import')
-// const postcssUrl = require('postcss-url')
-// const postcssAspectRatioMini = require('postcss-aspect-ratio-mini')
-// const postcssWriteSvg = require('postcss-write-svg')
-// const postcsscssnext = require('postcss-cssnext')
-// const pxToViewPort = require('postcss-px-to-viewport')
-// const cssnano = require('cssnano')
+const postcssImport = require('postcss-import')
+const postcssUrl = require('postcss-url')
+const postcssAspectRatioMini = require('postcss-aspect-ratio-mini')
+const postcssWriteSvg = require('postcss-write-svg')
+const postcsscssnext = require('postcss-cssnext')
+const px2ViewPort = require('postcss-px-to-viewport')
+const cssnano = require('cssnano')
 const path = require('path')
 const pathResolve = pathUrl => path.join(__dirname, pathUrl)
-const px2rem = require('postcss-px2rem-exclude')
+// const px2rem = require('postcss-px2rem-exclude')
 // 通过其他合适的方式判断是否为本地调试环境也一样，自由选择。
 // const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 //   .ant-btn {
@@ -32,34 +32,53 @@ module.exports = {
     postcss: {
       loaderOptions: {
         ident: 'postcss',
-        // plugins: () => [
-        //   require('postcss-px-to-viewport')(
-        //     postcssImport({}),
-        //     postcssUrl({}),
-        //     postcssAspectRatioMini({}),
-        //     postcssWriteSvg({ utf8: false }),
-        //     postcsscssnext({}),
-        //     pxToViewPort({
-        //       viewportWidth: 750, // (Number) The width of the viewport.
-        //       viewportHeight: 1334, // (Number) The height of the viewport.
-        //       unitPrecision: 10, // (Number) The decimal numbers to allow the REM units to grow to.
-        //       viewportUnit: 'rem', // (String) Expected units.
-        //       selectorBlackList: ['.ignore', '.hairlines'], // (Array) The selectors to ignore and leave as px.
-        //       minPixelValue: 1, // (Number) Set the minimum pixel value to replace.
-        //       mediaQuery: false, // (Boolean) Allow px to be converted in media queries.
-        //       exclude: /(\/|\\)(node_modules)(\/|\\)/ig
-        //     }),
-        //     cssnano({
-        //       preset: 'advanced',
-        //       autoprefixer: false,
-        //       'postcss-zindex': false,
-        //       zindex: false
-        //     }),
-        //   ),
-        // ],
         plugins: () => [
-          px2rem({ remUtil: 75, exclude: /node_modules/i })
-        ]
+          px2ViewPort(
+            // postcssImport({}),
+            // postcssUrl({}),
+            // postcssAspectRatioMini({}),
+            // postcssWriteSvg({ utf8: false }),
+            // postcsscssnext({}),
+            // cssnano({
+            //   preset: 'advanced',
+            //   autoprefixer: false,
+            //   'postcss-zindex': false,
+            //   zindex: false
+            // }),
+            {
+
+              unitToConvert: 'px', // 默认值`px`，需要转换的单位
+
+              viewportWidth: 750, // 视窗的宽度,对应设计稿宽度
+
+              viewportHeight: 1334, // 视窗的高度, 根据375设备的宽度来指定，一般是667，也可不配置
+
+              unitPrecision: 16, // 指定`px`转换为视窗单位值的小数位数
+
+              propList: ['*'], // 转化为vw的属性列表
+
+              viewportUnit: 'vw', // 指定需要转换成视窗单位
+
+              fontViewportUnit: 'vw', // 字体使用的视窗单位
+
+              selectorBlaskList: ['.ignore-'], // 指定不需要转换为视窗单位的类
+
+              mediaQuery: false, // 允许在媒体查询中转换`px`
+
+              minPixelValue: 1, // 小于或等于`1px`时不转换为视窗单位
+
+              replace: true, // 是否直接更换属性值而不添加备用属性
+
+              exclude: /(\/|\\)(node_modules)(\/|\\)/, // 忽略某些文件夹下的文件或特定文件
+
+              landscape: false, // 是否添加根据landscapeWidth生成的媒体查询条件 @media (orientation: landscape)
+
+              landscapeUnit: 'vw', // 横屏时使用的单位
+
+              landscapeWidth: 1134 // 横屏时使用的视窗宽度
+            }
+          ),
+        ],
       },
     }
   },
