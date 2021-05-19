@@ -2,49 +2,22 @@
 // carco 配置 https://blog.csdn.net/guozhicaice/article/details/109593964
 // https://stackoverflow.com/questions/47846209/webpack-with-less-and-postcss-autoprefixer webpack with less and postcss autoprefixer
 // craco https://cloud.tencent.com/developer/article/1749704
-
 // 移动端适配方案 https://bubble93.github.io/2021/03/11/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D%E6%96%B9%E6%A1%88/
 const CracoLessPlugin = require('craco-less')
-// 引入步骤2安装的依赖们
-const postcssImport = require('postcss-import')
-const postcssUrl = require('postcss-url')
 const postcssAspectRatioMini = require('postcss-aspect-ratio-mini')
 const postcssWriteSvg = require('postcss-write-svg')
-const postcsscssnext = require('postcss-cssnext')
 const px2ViewPort = require('postcss-px-to-viewport')
-const cssnano = require('cssnano')
 const path = require('path')
 const pathResolve = pathUrl => path.join(__dirname, pathUrl)
-// const px2rem = require('postcss-px2rem-exclude')
-// 通过其他合适的方式判断是否为本地调试环境也一样，自由选择。
-// const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-//   .ant-btn {
-//   margin-right: 10px;
-//   margin-bottom: 30px;
-// }
-
-//   .ant-btn {
-//   margin-right: 3.125vw;
-//   margin-bottom: 9.375vw;
-// }
 module.exports = {
   style: {
     postcss: {
       loaderOptions: {
         ident: 'postcss',
         plugins: () => [
+          postcssAspectRatioMini({}),
+          postcssWriteSvg({ utf8: false }),
           px2ViewPort(
-            // postcssImport({}),
-            // postcssUrl({}),
-            // postcssAspectRatioMini({}),
-            // postcssWriteSvg({ utf8: false }),
-            // postcsscssnext({}),
-            // cssnano({
-            //   preset: 'advanced',
-            //   autoprefixer: false,
-            //   'postcss-zindex': false,
-            //   zindex: false
-            // }),
             {
 
               unitToConvert: 'px', // 默认值`px`，需要转换的单位
